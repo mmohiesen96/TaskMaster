@@ -1,7 +1,9 @@
 package com.example.taskmaster;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.example.taskmaster.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//        return NavigationUI.navigateUp(navController, appBarConfiguration)
+//                || super.onSupportNavigateUp();
+//    }
 
     public void toAddTask(View view) {
         Intent addIntent = new Intent(this , AddTask.class);
@@ -64,5 +67,36 @@ public class MainActivity extends AppCompatActivity {
     public void toAllTasks(View view) {
         Intent allIntent = new Intent(this , AllTasks.class);
         startActivity(allIntent);
+    }
+
+    public void toSettings(View view) {
+        Intent settingsIntent = new Intent(this , Settings.class);
+        startActivity(settingsIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        TextView homeText = findViewById(R.id.textView);
+        homeText.setText(sharedPreferences.getString("username" , "User's") + " Tasks");
+    }
+
+    public void onEat(View view) {
+        Intent detailIntent = new Intent(this , TaskDetail.class);
+        detailIntent.putExtra("task" , "Eat task");
+        startActivity(detailIntent);
+    }
+
+    public void onCode(View view) {
+        Intent detailIntent = new Intent(this , TaskDetail.class);
+        detailIntent.putExtra("task" , "Code task");
+        startActivity(detailIntent);
+    }
+
+    public void onSleep(View view) {
+        Intent detailIntent = new Intent(this , TaskDetail.class);
+        detailIntent.putExtra("task" , "Sleep task");
+        startActivity(detailIntent);
     }
 }
