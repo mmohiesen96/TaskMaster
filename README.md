@@ -33,3 +33,17 @@ This activity holds a title and a text view followed by a plain text input for b
 This Button when clicked will show a simple toast will show the text of submitted
 
 ![submitted](screenshots/submitted.jpg)
+
+## Lab: 26 - Data in TaskMaster
+
+- In this lab I added a settings page which will take the user name from an edit text and add it to shared preferences and display it in the title textview on the main activity and display a toast to show the process and added three buttons to navigate to the task details page with the name of task shoed in a text view on the title.
+
+**Settings Activity** In this page The user is allowed to add his name and it will be displayed in the home page title and also shows a toast with the same info.
+![Settings](screenshots/setting.jpg)
+
+**Main Activity** In this activity I added three buttons with three different text values which will navigate to the task detail page with the name on the title text view.
+
+![main_27](screenshots/main_27.jpg)
+
+**Task detail Activity** In this activity the value of the button will be displayed on the title.
+![Task Detail](screenshots/detail.jpg)
