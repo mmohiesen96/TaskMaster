@@ -4,29 +4,50 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.taskmaster.databinding.ActivityMainBinding;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
+    private TaskAdapter taskAdapter;
+    private List<Task> myTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView recyclerView = findViewById(R.id.recycle_list);
+        myTasks = new ArrayList<>();
+        myTasks.add(new Task("Task 1 " , "My First Task"  , State.ASSIGNED));
+        myTasks.add(new Task("Task 2 " , "My First Task"  , State.NEW));
+        myTasks.add(new Task("Task 3 " , "My First Task"  , State.IN_PROGRESS));
+        taskAdapter = new TaskAdapter(myTasks, new TaskAdapter.onClicker() {
+            @Override
+            public void onClickListener(int position) {
+                Intent myIntent = new Intent(getApplicationContext() , TaskDetail.class);
+                myIntent.putExtra("Title" , myTasks.get(position).getTitle());
+                myIntent.putExtra("Body" , myTasks.get(position).getBody());
+                myIntent.putExtra("State" , myTasks.get(position).getState().name());
+                startActivity(myIntent);
+
+            }
+        });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this , LinearLayoutManager.VERTICAL , false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(taskAdapter);
 
     }
 
