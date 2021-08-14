@@ -34,7 +34,7 @@ This Button when clicked will show a simple toast will show the text of submitte
 
 ![submitted](screenshots/submitted.jpg)
 
-## Lab: 26 - Data in TaskMaster
+## Lab: 27 - Data in TaskMaster
 
 - In this lab I added a settings page which will take the user name from an edit text and add it to shared preferences and display it in the title textview on the main activity and display a toast to show the process and added three buttons to navigate to the task details page with the name of task shoed in a text view on the title.
 
@@ -47,3 +47,20 @@ This Button when clicked will show a simple toast will show the text of submitte
 
 **Task detail Activity** In this activity the value of the button will be displayed on the title.
 ![Task Detail](screenshots/detail.jpg)
+
+
+
+## Lab: 28 - Data in TaskMaster
+
+- In this lab I added a recycler view to show all tasks
+that the user had and implemented the task class with the appropriate data and displayed each task when clicked on an activity that shows task details.
+
+**Main Activity** Added the recycler view to the main activity to show all the hard coded tasks and the user can click on them.
+![Main](screenshots/recview.png)
+
+**Task Detail Activity** This is the task details page that will show the chosen task details based on what the user click's.
+
+![Task Detail](screenshots/task1.png)
+
+**Task detail Activity** In this activity shows when the user clicks on another task.
+![Task Detail](screenshots/task2.png)
