@@ -64,3 +64,18 @@ that the user had and implemented the task class with the appropriate data and d
 
 **Task detail Activity** In this activity shows when the user clicks on another task.
 ![Task Detail](screenshots/task2.png)
+
+
+## Lab: 29 - Room
+
+- In this lab I added the ability for the user to add tasks dynamically in the add task activity and render them in different activities after saving the data in a room database and also rendered images beside each activity in the main activity recycle view.
+
+**Main Activity** Rendered the added tasks dynamically with a delete button and an image with the title of the task.
+![Main](screenshots/room.png)
+
+**Add Task Activity** In this activity the user is allowed to add his tasks and choose a photo for each of them and save them in the room database.
+
+![Task Detail](screenshots/add_room.png)
+
+**All Tasks Activity** Tasks are rendered here from the room database in the recycler view.
+![Task Detail](screenshots/all_room.png)
