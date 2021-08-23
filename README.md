@@ -79,3 +79,10 @@ that the user had and implemented the task class with the appropriate data and d
 
 **All Tasks Activity** Tasks are rendered here from the room database in the recycler view.
 ![Task Detail](screenshots/all_room.png)
+
+## Lab: 31 - Espresso Testing
+- In this lab I added the following tests to my applications:
+    - First test to assert important views and buttons are working as expected.
+    - Second test to assure that I can successfully add a task and click on it on the recycle view
+    and the correct data will be displayed.
+    - Third test to assert that name can be changed truly and will be displayed in the home activity.
