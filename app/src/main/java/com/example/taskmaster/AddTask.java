@@ -3,7 +3,9 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.TaskItem;
+import com.example.taskmaster.data.TaskDataManager;
 
 import java.util.HashMap;
 
@@ -70,7 +77,21 @@ public class AddTask extends AppCompatActivity {
             String title = e1.getText().toString();
             String body = e2.getText().toString();
             String state = e3.getText().toString();
+            TaskItem taskItem = TaskItem.builder()
+                    .title(title)
+                    .description(body)
+                    .status(state)
+                    .build();
 
+            if (isNetworkAvailable(getApplicationContext())) {
+                Log.i(TAG, "onClick: the network is available");
+            } else {
+                Log.i(TAG, "onClick: net down");
+            }
+
+            saveTaskToAPI(taskItem);
+            TaskDataManager.getInstance().getData().add(new Task(taskItem.getTitle() , taskItem.getDescription(),taskItem.getStatus()));
+            Toast.makeText(AddTask.this, "Task saved", Toast.LENGTH_SHORT).show();
             Task myTask = new Task(title , body , state);
             myTask.setImage(myTaskImage);
             taskDAO.insertOne(myTask);
@@ -79,7 +100,20 @@ public class AddTask extends AppCompatActivity {
             startActivity(allIntent);
         });
     }
+    public TaskItem saveTaskToAPI(TaskItem task) {
+        Amplify.API.mutate(ModelMutation.create(task),
+                success -> Log.i(TAG, "Saved item: " + task.getTitle()),
+                error -> Log.e(TAG, "Could not save item to API/dynamodb" + task.getTitle()));
+        return task;
 
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager =
+                ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager
+                .getActiveNetworkInfo().isConnected();
+    }
 
 
 
