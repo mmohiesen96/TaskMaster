@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.amplifyframework.datastore.generated.model.TaskItem;
+
 import java.util.List;
 
 public class AllTasks extends AppCompatActivity {
     private TaskAdapter taskAdapter;
     private List<Task> myTasks;
+    private List<TaskItem> myTasksDb;
     private TaskDAO taskDAO;
     private TaskDB taskDB;
     private void notifyDatasetChanged() {
@@ -26,15 +29,17 @@ public class AllTasks extends AppCompatActivity {
         setContentView(R.layout.activity_all_tasks);
         taskDB = Room.databaseBuilder(getApplicationContext() , TaskDB.class , AddTask.TASK_ITEM).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         taskDAO = taskDB.taskDAO();
-        myTasks = taskDAO.findAll();
+        MainActivity mainActivity = new MainActivity();
+
         RecyclerView recyclerView = findViewById(R.id.list2);
-        taskAdapter = new TaskAdapter(myTasks, new TaskAdapter.onClicker() {
+        this.myTasksDb = mainActivity.taskListAmp;
+        taskAdapter = new TaskAdapter(myTasksDb, new TaskAdapter.onClicker() {
             @Override
             public void onClickListener(int position) {
                 Intent myIntent = new Intent(getApplicationContext() , TaskDetail.class);
-                myIntent.putExtra("Title" , myTasks.get(position).getTitle());
-                myIntent.putExtra("Body" , myTasks.get(position).getBody());
-                myIntent.putExtra("State" , myTasks.get(position).getState());
+                myIntent.putExtra("Title" , myTasksDb.get(position).getTitle());
+                myIntent.putExtra("Body" , myTasksDb.get(position).getDescription());
+                myIntent.putExtra("State" , myTasksDb.get(position).getStatus());
                 startActivity(myIntent);
 
             }

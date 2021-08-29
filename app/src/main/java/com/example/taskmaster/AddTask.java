@@ -77,48 +77,24 @@ public class AddTask extends AppCompatActivity {
             String title = e1.getText().toString();
             String body = e2.getText().toString();
             String state = e3.getText().toString();
-            TaskItem taskItem = TaskItem.builder()
-                    .title(title)
-                    .description(body)
-                    .status(state)
-                    .build();
 
-            if (isNetworkAvailable(getApplicationContext())) {
-                Log.i(TAG, "onClick: the network is available");
-            } else {
-                Log.i(TAG, "onClick: net down");
-            }
-
-            saveTaskToAPI(taskItem);
-            TaskDataManager.getInstance().getData().add(new Task(taskItem.getTitle() , taskItem.getDescription(),taskItem.getStatus()));
             Toast.makeText(AddTask.this, "Task saved", Toast.LENGTH_SHORT).show();
             Task myTask = new Task(title , body , state);
+            TaskItem myTaskDynamo = TaskItem.builder().title(title).build();
+            Amplify.API.mutate(ModelMutation.create(myTaskDynamo),
+                    response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
+                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+            );
             myTask.setImage(myTaskImage);
             taskDAO.insertOne(myTask);
             Toast.makeText(AddTask.this, "Added", Toast.LENGTH_SHORT).show();
-            Intent allIntent = new Intent(this , MainActivity.class);
+            Intent allIntent = new Intent(this , AddTask.class);
             startActivity(allIntent);
         });
     }
-    public TaskItem saveTaskToAPI(TaskItem task) {
-        Amplify.API.mutate(ModelMutation.create(task),
-                success -> Log.i(TAG, "Saved item: " + task.getTitle()),
-                error -> Log.e(TAG, "Could not save item to API/dynamodb" + task.getTitle()));
-        return task;
-
-    }
-
-    public boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager =
-                ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager
-                .getActiveNetworkInfo().isConnected();
-    }
 
 
 
 
-//    public void addTask(View view) {
-//        Toast.makeText(this, "Submitted", Toast.LENGTH_SHORT).show();
-//    }
+
 }

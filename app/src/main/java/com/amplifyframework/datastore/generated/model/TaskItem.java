@@ -2,26 +2,28 @@ package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.Objects;
 
 import androidx.core.util.ObjectsCompat;
 
 import com.amplifyframework.core.model.Model;
+import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Task type in your schema. */
+/** This is an auto generated class representing the TaskItem type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Tasks")
+@ModelConfig(pluralName = "TaskItems")
 public final class TaskItem implements Model {
-  public static final QueryField ID = field("Task", "id");
-  public static final QueryField TITLE = field("Task", "title");
-  public static final QueryField DESCRIPTION = field("Task", "description");
-  public static final QueryField STATUS = field("Task", "status");
+  public static final QueryField ID = field("TaskItem", "id");
+  public static final QueryField TITLE = field("TaskItem", "title");
+  public static final QueryField DESCRIPTION = field("TaskItem", "description");
+  public static final QueryField STATUS = field("TaskItem", "status");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String") String description;
@@ -31,34 +33,34 @@ public final class TaskItem implements Model {
   public String getId() {
       return id;
   }
-
+  
   public String getTitle() {
       return title;
   }
-
+  
   public String getDescription() {
       return description;
   }
-
+  
   public String getStatus() {
       return status;
   }
-
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
-
+  
   public Temporal.DateTime getUpdatedAt() {
       return updatedAt;
   }
-
+  
   private TaskItem(String id, String title, String description, String status) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.status = status;
   }
-
+  
   @Override
    public boolean equals(Object obj) {
       if (this == obj) {
@@ -66,16 +68,16 @@ public final class TaskItem implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      TaskItem task = (TaskItem) obj;
-      return ObjectsCompat.equals(getId(), task.getId()) &&
-              ObjectsCompat.equals(getTitle(), task.getTitle()) &&
-              ObjectsCompat.equals(getDescription(), task.getDescription()) &&
-              ObjectsCompat.equals(getStatus(), task.getStatus()) &&
-              ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
+      TaskItem taskItem = (TaskItem) obj;
+      return ObjectsCompat.equals(getId(), taskItem.getId()) &&
+              ObjectsCompat.equals(getTitle(), taskItem.getTitle()) &&
+              ObjectsCompat.equals(getDescription(), taskItem.getDescription()) &&
+              ObjectsCompat.equals(getStatus(), taskItem.getStatus()) &&
+              ObjectsCompat.equals(getCreatedAt(), taskItem.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), taskItem.getUpdatedAt());
       }
   }
-
+  
   @Override
    public int hashCode() {
     return new StringBuilder()
@@ -88,11 +90,11 @@ public final class TaskItem implements Model {
       .toString()
       .hashCode();
   }
-
+  
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Task {")
+      .append("TaskItem {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("title=" + String.valueOf(getTitle()) + ", ")
       .append("description=" + String.valueOf(getDescription()) + ", ")
@@ -102,12 +104,12 @@ public final class TaskItem implements Model {
       .append("}")
       .toString();
   }
-
+  
   public static TitleStep builder() {
       return new Builder();
   }
-
-  /**
+  
+  /** 
    * WARNING: This method should not be used to build an instance of this object for a CREATE mutation.
    * This is a convenience method to return an instance of the object with only its ID populated
    * to be used in the context of a parameter in a delete mutation or referencing a foreign key
@@ -133,7 +135,7 @@ public final class TaskItem implements Model {
       null
     );
   }
-
+  
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       title,
@@ -143,7 +145,7 @@ public final class TaskItem implements Model {
   public interface TitleStep {
     BuildStep title(String title);
   }
-
+  
 
   public interface BuildStep {
     TaskItem build();
@@ -151,7 +153,7 @@ public final class TaskItem implements Model {
     BuildStep description(String description);
     BuildStep status(String status);
   }
-
+  
 
   public static class Builder implements TitleStep, BuildStep {
     private String id;
@@ -161,7 +163,7 @@ public final class TaskItem implements Model {
     @Override
      public TaskItem build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
-
+        
         return new TaskItem(
           id,
           title,
