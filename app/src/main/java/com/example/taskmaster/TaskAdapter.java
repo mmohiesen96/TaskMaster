@@ -10,18 +10,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.TaskItem;
+
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.viewHolder> {
-    private List<Task> myTasks;
+    private List<TaskItem> myTasksDb;
     private onClicker myOnClicker;
     public interface onClicker{
         void onClickListener(int position);
         void onDeleteListener(int position);
     }
 
-    public TaskAdapter(List<Task> myTasks, onClicker myOnClicker) {
-        this.myTasks = myTasks;
+
+    public TaskAdapter(List<TaskItem> myTasks, onClicker myOnClicker) {
+        this.myTasksDb = myTasks;
         this.myOnClicker = myOnClicker;
     }
 
@@ -34,17 +37,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.viewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TaskAdapter.viewHolder holder, int position) {
-        Task task = myTasks.get(position);
+        TaskItem task = myTasksDb.get(position);
         holder.myTask.setText(task.getTitle());
 //        holder.myTask.setText(task.getBody());
 //        holder.myTask.setText(task.getState());
-        holder.image.setImageResource(task.getImage());
+//        holder.image.setImageResource(task.getImage());
     }
 
 
     @Override
     public int getItemCount() {
-        return myTasks.size();
+        return myTasksDb.size();
     }
 
     static class  viewHolder extends RecyclerView.ViewHolder{

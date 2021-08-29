@@ -1,9 +1,9 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTask(
-  $input: CreateTaskInput!
-  $condition: ModelTaskConditionInput
+mutation CreateTaskItem(
+  $input: CreateTaskItemInput!
+  $condition: ModelTaskItemConditionInput
 ) {
-  createTask(input: $input, condition: $condition) {
+  createTaskItem(input: $input, condition: $condition) {
     id
     title
     description
@@ -15,11 +15,11 @@ mutation CreateTask(
     updatedAt
   }
 }
-mutation UpdateTask(
-  $input: UpdateTaskInput!
-  $condition: ModelTaskConditionInput
+mutation UpdateTaskItem(
+  $input: UpdateTaskItemInput!
+  $condition: ModelTaskItemConditionInput
 ) {
-  updateTask(input: $input, condition: $condition) {
+  updateTaskItem(input: $input, condition: $condition) {
     id
     title
     description
@@ -31,57 +31,15 @@ mutation UpdateTask(
     updatedAt
   }
 }
-mutation DeleteTask(
-  $input: DeleteTaskInput!
-  $condition: ModelTaskConditionInput
+mutation DeleteTaskItem(
+  $input: DeleteTaskItemInput!
+  $condition: ModelTaskItemConditionInput
 ) {
-  deleteTask(input: $input, condition: $condition) {
+  deleteTaskItem(input: $input, condition: $condition) {
     id
     title
     description
     status
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-mutation CreateNote(
-  $input: CreateNoteInput!
-  $condition: ModelNoteConditionInput
-) {
-  createNote(input: $input, condition: $condition) {
-    id
-    content
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateNote(
-  $input: UpdateNoteInput!
-  $condition: ModelNoteConditionInput
-) {
-  updateNote(input: $input, condition: $condition) {
-    id
-    content
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteNote(
-  $input: DeleteNoteInput!
-  $condition: ModelNoteConditionInput
-) {
-  deleteNote(input: $input, condition: $condition) {
-    id
-    content
     _version
     _deleted
     _lastChangedAt

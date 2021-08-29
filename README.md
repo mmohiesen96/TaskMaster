@@ -86,3 +86,9 @@ that the user had and implemented the task class with the appropriate data and d
     - Second test to assure that I can successfully add a task and click on it on the recycle view
     and the correct data will be displayed.
     - Third test to assert that name can be changed truly and will be displayed in the home activity.
+
+## Lab: 32 - Amplify and DyanmoDB
+- In this lab I added the following features to my applications:
+    - When adding the new task It will be added to the DynampDB Instead of room.
+    - Now Data will be fetched from the Database to be displayed into the recycler view in
+    the main activity.

@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateTask {
-  onCreateTask {
+subscription OnCreateTaskItem {
+  onCreateTaskItem {
     id
     title
     description
@@ -12,8 +12,8 @@ subscription OnCreateTask {
     updatedAt
   }
 }
-subscription OnUpdateTask {
-  onUpdateTask {
+subscription OnUpdateTaskItem {
+  onUpdateTaskItem {
     id
     title
     description
@@ -25,45 +25,12 @@ subscription OnUpdateTask {
     updatedAt
   }
 }
-subscription OnDeleteTask {
-  onDeleteTask {
+subscription OnDeleteTaskItem {
+  onDeleteTaskItem {
     id
     title
     description
     status
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateNote {
-  onCreateNote {
-    id
-    content
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateNote {
-  onUpdateNote {
-    id
-    content
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteNote {
-  onDeleteNote {
-    id
-    content
     _version
     _deleted
     _lastChangedAt
