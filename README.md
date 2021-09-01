@@ -92,3 +92,10 @@ that the user had and implemented the task class with the appropriate data and d
     - When adding the new task It will be added to the DynampDB Instead of room.
     - Now Data will be fetched from the Database to be displayed into the recycler view in
     the main activity.
+
+
+## Lab: 34 - Publishing to play Store
+- In this lab I've built my application with signed bundled apk:
+    - Apk exists on [APK](app/release/TaskMaster.apk)
+    - ![my apk](APK.png)
+
