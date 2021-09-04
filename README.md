@@ -99,3 +99,8 @@ that the user had and implemented the task class with the appropriate data and d
     - Apk exists on [APK](app/release/TaskMaster.apk)
     - ![my apk](APK.png)
 
+## Lab: 39 - Analytics
+- In this lab I've built my application with signed bundled apk:
+    - Apk exists on [APK](app/release/TaskMaster.apk)
+    - ![my apk](APK.png)
+
