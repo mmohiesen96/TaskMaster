@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.TaskItem;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.example.taskmaster.data.TaskDataManager;
 
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class AddTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+        setTitle("Add task");
         taskImage.put("Task1", R.drawable.ic_clipboard);
         taskImage.put("Task2", R.drawable.ic_clipboard1);
         taskImage.put("Task3", R.drawable.ic_study);
@@ -80,7 +82,8 @@ public class AddTask extends AppCompatActivity {
 
             Toast.makeText(AddTask.this, "Task saved", Toast.LENGTH_SHORT).show();
             Task myTask = new Task(title , body , state);
-            TaskItem myTaskDynamo = TaskItem.builder().title(title).build();
+            Team
+            TaskItem myTaskDynamo = TaskItem.builder().title(title).team().build();
             Amplify.API.mutate(ModelMutation.create(myTaskDynamo),
                     response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
                     error -> Log.e("MyAmplifyApp", "Create failed", error)
